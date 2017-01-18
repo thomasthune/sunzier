@@ -1,8 +1,18 @@
 <?php
-
+/**
+ * Class: GeoCoder
+ *
+ * From city name, get geolocation from google maps api.
+ */
 class GeoCoder
 {
-    public function getLocation($city)
+    /**
+     * getLocation
+     *
+     * @param string $city
+     * @return GeoLocation
+     */
+    public function getLocation(string $city): GeoLocation
     {
         $apiUrl = 'http://maps.googleapis.com/maps/api/geocode/json';
         $countryCode = 'DK';

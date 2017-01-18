@@ -1,4 +1,13 @@
 <?php
+/**
+ * Ajax part of Sunzier.
+ *
+ * Accepts 2 arguments from the requester, date and city. Both will
+ * be filtered accordingly.
+ * If no date is supplied an array of days in current week until
+ * sunday will be generated and returned with sunrise/sunset
+ * times.
+ */
 
 require_once __DIR__ . '/require.php';
 

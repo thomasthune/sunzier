@@ -1,25 +1,56 @@
 <?php
 
+/**
+ * Class: GeoLocation
+ *
+ * Location container class
+ */
 class GeoLocation
 {
+    /**
+     * latitude
+     *
+     * @var float
+     */
     protected $latitude;
 
+    /**
+     * longitude
+     *
+     * @var float
+     */
     protected $longitude;
 
-    public function __construct($latitude, $longitude)
+    /**
+     * __construct
+     *
+     * @param float $latitude
+     * @param float $longitude
+     * @return void
+     */
+    public function __construct(float $latitude, float $longitude)
     {
         $this->latitude = $latitude;
         $this->longitude = $longitude;
     }
 
-    public function getLatitude()
+    /**
+     * getLatitude
+     *
+     * @return float
+     */
+    public function getLatitude(): float
     {
         return $this->latitude;
     }
 
-    public function getLongitude()
+    /**
+     * getLongitude
+     *
+     * @return float
+     */
+    public function getLongitude(): float
     {
         return $this->longitude;
     }
 }
-
