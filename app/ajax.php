@@ -3,7 +3,7 @@
 require_once __DIR__ . '/require.php';
 
 // Filter dates requested.
-if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/", $_GET['date'])) {
+if (preg_match("/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/", $_GET['date'])) {
     $requestedDate = $_GET['date'];
 }
 
@@ -13,11 +13,14 @@ $cityName = filter_var($_GET['city'], FILTER_SANITIZE_STRING);
 $sunrise = [];
 
 if ($cityName) {
-
     $geoCoder = new GeoCoder();
     $location = $geoCoder->getLocation($cityName);
 
-    $date = new DateTime('now');
+    if (!$requestedDate) {
+        $date = new DateTime('now');
+    } else {
+        $date = new DateTime($requestedDate);
+    }
 
     $dates[] = clone $date;
 
@@ -33,7 +36,10 @@ if ($cityName) {
     foreach ($dates as $date) {
         $calculator = new SunriseCalculator($location, $date);
 
-        $sunrise[$date->format('Y-m-d')] = $calculator->getRunsise();
+        $sunrise[] = array_merge(
+            ['date' => $date->format('Y-m-d')],
+            $calculator->getRunsise()
+        );
     }
 }
 
